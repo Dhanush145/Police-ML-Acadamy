@@ -133,6 +133,9 @@ const Stacking = () => {
                       )}
                     >
                       <h4 className="font-semibold mb-2 text-sm">{model.name}</h4>
+                      <p className="text-xs text-muted-foreground mb-3">
+                        Weighted towards {idx === 0 ? "time patterns" : idx === 1 ? "location data" : "weather conditions"}
+                      </p>
                       {step >= 1 && (
                         <div className="animate-fade-in">
                           <p className="text-xl font-bold text-primary">{model.prediction}</p>
