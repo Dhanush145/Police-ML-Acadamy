@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowDown, Play, CheckCircle2 } from "lucide-react";
+import { ArrowDown, Play, CheckCircle2, Database } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const Stacking = () => {
@@ -28,6 +28,26 @@ const Stacking = () => {
             Stacking uses multiple models in layers, like a police department with patrol officers 
             reporting to detectives who make final decisions.
           </p>
+
+          {/* Dataset Upload */}
+          <Card className="mb-8 border-2 bg-gradient-to-r from-primary/5 to-accent/5">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Database className="h-5 w-5 text-primary" />
+                Training Dataset Loaded
+              </CardTitle>
+              <CardDescription>
+                Complete police crime dataset with 12 historical incidents used to train the stacking model
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center gap-2 text-sm">
+                <CheckCircle2 className="h-5 w-5 text-primary" />
+                <span className="font-semibold">12 crime incidents loaded</span>
+                <span className="text-muted-foreground">• Multiple features: Time, Location, Day, Weather</span>
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Sample Case */}
           <Card className="mb-8 border-2">
@@ -96,6 +116,15 @@ const Stacking = () => {
                     </div>
                   ))}
                 </div>
+                {step >= 1 && (
+                  <div className="mt-4 p-4 bg-muted/50 rounded-lg border animate-fade-in">
+                    <p className="text-sm text-muted-foreground">
+                      <strong>Note:</strong> Each base model is trained to be an expert in their specific area.
+                      The meta-model learns to weight these predictions based on their proven expertise —
+                      similar to how a lead detective knows which officers have the best judgment for different situations.
+                    </p>
+                  </div>
+                )}
               </div>
 
               {/* Arrow */}
