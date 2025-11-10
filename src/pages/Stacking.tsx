@@ -8,6 +8,21 @@ import { cn } from "@/lib/utils";
 const Stacking = () => {
   const [step, setStep] = useState(0);
 
+  const trainingData = [
+    { time: "2:30 AM", location: "Residential", day: "Saturday", weather: "Clear", crime: "Burglary" },
+    { time: "11:00 PM", location: "Commercial", day: "Friday", weather: "Rainy", crime: "Burglary" },
+    { time: "3:15 PM", location: "Park", day: "Sunday", weather: "Sunny", crime: "Theft" },
+    { time: "1:45 AM", location: "Residential", day: "Monday", weather: "Clear", crime: "Burglary" },
+    { time: "6:30 PM", location: "Street", day: "Wednesday", weather: "Cloudy", crime: "Assault" },
+    { time: "10:00 PM", location: "Commercial", day: "Saturday", weather: "Clear", crime: "Burglary" },
+    { time: "4:00 PM", location: "Park", day: "Saturday", weather: "Sunny", crime: "Theft" },
+    { time: "12:30 AM", location: "Residential", day: "Sunday", weather: "Rainy", crime: "Burglary" },
+    { time: "7:00 PM", location: "Street", day: "Friday", weather: "Clear", crime: "Assault" },
+    { time: "2:00 PM", location: "Commercial", day: "Thursday", weather: "Sunny", crime: "Theft" },
+    { time: "11:30 PM", location: "Residential", day: "Tuesday", weather: "Cloudy", crime: "Burglary" },
+    { time: "5:45 PM", location: "Park", day: "Sunday", weather: "Rainy", crime: "Theft" },
+  ];
+
   const baseModels = [
     { name: "Time Pattern Model", prediction: "Burglary", confidence: 75 },
     { name: "Location Model", prediction: "Burglary", confidence: 82 },
@@ -41,10 +56,23 @@ const Stacking = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="flex items-center gap-2 text-sm">
+              <div className="flex items-center gap-2 mb-4 text-sm">
                 <CheckCircle2 className="h-5 w-5 text-primary" />
                 <span className="font-semibold">12 crime incidents loaded</span>
-                <span className="text-muted-foreground">• Multiple features: Time, Location, Day, Weather</span>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 max-h-64 overflow-y-auto pr-2">
+                {trainingData.map((record, idx) => (
+                  <div key={idx} className="text-xs p-3 bg-background/50 rounded border">
+                    <div className="font-semibold text-primary mb-1">Record {idx + 1}</div>
+                    <div className="space-y-0.5 text-muted-foreground">
+                      <div><strong>Time:</strong> {record.time}</div>
+                      <div><strong>Location:</strong> {record.location}</div>
+                      <div><strong>Day:</strong> {record.day}</div>
+                      <div><strong>Weather:</strong> {record.weather}</div>
+                      <div><strong>Crime:</strong> <span className="text-foreground font-semibold">{record.crime}</span></div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </CardContent>
           </Card>
